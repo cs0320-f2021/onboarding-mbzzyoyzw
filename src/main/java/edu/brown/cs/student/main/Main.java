@@ -74,20 +74,29 @@ public final class Main {
           System.out.println(arguments[0]);
           // TODO: complete your REPL by adding commands for addition "add" and subtraction
           //  "subtract"
+          boolean cont = true;
           if(arguments.length!=3){//If input does not have cmd, 2 arguments
             System.out.println("ERROR: Input must contain a single command followed by two individual arguments.")
           }
-          if(false){//Ensures arguments are NUMBERS
-            //TODO: Add check to prevent against String inputs to mathbot functions
+          
+          double a,b;
+          try{//Tries to convert user arguments into doubles
+            a = Double.valueOf(arguments[1]);
+            b = Double.valueOf(arguments[2]);
           }
-          else if(arguments[0].equalsIgnoreCase("add")){
-            System.out.println(mbot.add(arguments[1], arguments[2]))
+          catch(Exception e){
+            System.out.println("Input arguments are not numbers!");
+            cont = false;
           }
-          else if(arguments[0].equalsIgnoreCase("subtract")){
-            System.out.println(mbot.subtract(arguments[1], arguments[2]))
+
+          if(cont && arguments[0].equalsIgnoreCase("add")){
+            System.out.println(mbot.add(a, b));
+          }
+          else if(cont && arguments[0].equalsIgnoreCase("subtract")){
+            System.out.println(mbot.subtract(a, b));
           }
           else{
-            System.out.println(arguments[0] + " is not a valid command.")
+            System.out.println(arguments[0] + " is not a valid command.");
           }
         } catch (Exception e) {
           // e.printStackTrace();
