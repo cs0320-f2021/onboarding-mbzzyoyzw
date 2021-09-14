@@ -60,6 +60,10 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
+    //NOTE: This is only being instantiated to follow project guidelines, in reality, mbot methods should
+    //be static and not require an instance of MathBot to function.
+    MathBot mbot = new MathBot();
+
     // TODO: Add your REPL here!
     try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
       String input;
@@ -70,6 +74,21 @@ public final class Main {
           System.out.println(arguments[0]);
           // TODO: complete your REPL by adding commands for addition "add" and subtraction
           //  "subtract"
+          if(arguments.length!=3){//If input does not have cmd, 2 arguments
+            System.out.println("ERROR: Input must contain a single command followed by two individual arguments.")
+          }
+          if(false){//Ensures arguments are NUMBERS
+            //TODO: Add check to prevent against String inputs to mathbot functions
+          }
+          else if(arguments[0].equalsIgnoreCase("add")){
+            System.out.println(mbot.add(arguments[1], arguments[2]))
+          }
+          else if(arguments[0].equalsIgnoreCase("subtract")){
+            System.out.println(mbot.subtract(arguments[1], arguments[2]))
+          }
+          else{
+            System.out.println(arguments[0] + " is not a valid command.")
+          }
         } catch (Exception e) {
           // e.printStackTrace();
           System.out.println("ERROR: We couldn't process your input");
